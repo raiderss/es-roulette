@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>es-roulette</title>
+    <link rel="stylesheet" href="../assets/css/app.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+
+  
+<div id="app" :style="{opacity: ui ? '1' : '0', transition: 'opacity .25s ease'}">
+
+  <audio id="winSound" src="./assets/sound/spin.mp3"></audio>
+
+ <div class="roulette" :class="{ blur: spinning }">
+    <div class="balance">Balance: {{ balance.toFixed(2) }}</div>
+    <div class="recent">
+      <p style="color: white;">Recent {{winner}}</p>
+      <div v-for="(color, index) in recentColors" :key="index" :class="['circle', color]"></div>
+    </div>
+
+    <div class="frame2">
+      <div class="roulette-animation" ref="roulette">
+        <div class="set">
+          <div v-for="(color, index) in repeatedColors" :key="index" :data-id="index" :class="['color-block', color]">
+            <!-- <p>{{index}}</p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-field">
+      <div class="bets">
+        <div class="bet-amount">Bet amount</div>
+        <div class="coins">
+          <div class="emoji-coin"></div>
+          <div class="amount">{{ betAmount.toFixed(2) }}</div>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <div class="frame19">
+          <div class="clear" @click="clearBet" :disabled="spinning">Clear</div>
+        </div>
+
+        <div class="adds">
+          <div class="button-small" v-for="(amount, index) in [lastBet, 1, 10, 100, 0.5, 2, 4, 'Max']" :key="index" @click="adjustBet(amount)" :disabled="spinning">
+            <div class="last-text">{{ amount === 'Max' ? amount : amount < 1 ? `1/${amount}` : `+${amount}` }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-bets">
+        <div class="bet-button red" @click="placeBet('red')" :disabled="spinning">
+          Place Bet <span class="multiplier">2x</span>
+        </div>
+        <div class="bet-button green" @click="placeBet('green')" :disabled="spinning">
+          Place Bet <span class="multiplier">14x</span>
+        </div>
+        <div class="bet-button black" @click="placeBet('black')" :disabled="spinning">
+          Place Bet <span class="multiplier">2x</span>
+        </div>
+      </div>
+
+      <div class="bets-info">
+        <div class="coin"></div>
+        <div class="bet-amount">{{ totalBets.toFixed(2) }} Bets</div>
+      </div>
+    </div>
+
+    <div v-if="showWinMessage" class="win-message">
+      <div class="win-content">
+        <div class="win-text">YOU WIN</div>
+        <div class="win-level">LEVEL 25</div>
+        <div class="win-stars">⭐⭐⭐</div>
+        <div class="win-amount">+{{ winAmount.toFixed(2) }}</div>
+        <button class="collect-button" @click="collectWinnings">COLLECT</button>
+      </div>
+    </div>
+  </div>
+  
+
+
+  
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="./assets/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script src="./vue.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</body>
+
+</html>

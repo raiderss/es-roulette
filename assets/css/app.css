@@ -1,0 +1,493 @@
+@font-face {
+  font-family: Orbitron;
+  src: url(../font/Orbitron-Regular.ttf);
+}
+@font-face {
+  font-family: Zen Dots;
+  src: url(../font/ZenDots-Regular.ttf);
+}
+body {
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  align-items: center;
+  justify-content: center;
+}
+
+:root {
+  --scrolbar: #EAC43D;
+}
+
+#app {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center;
+  background-image: url("../img/background.svg");
+  font-family: "Zen Dots", sans-serif;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.roulette {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 80rem;
+  height: 90%;
+  margin: 0 auto;
+  border-radius: 0.625rem;
+  position: relative;
+}
+.roulette .balance {
+  font-size: 2.5rem;
+  color: gold;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.roulette .recent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+.roulette .recent p {
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
+  color: gold;
+}
+.roulette .recent .circle {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.5);
+}
+.roulette .recent .circle.red {
+  background: linear-gradient(180deg, #ff4d4d, #b30000);
+}
+.roulette .recent .circle.black {
+  background: linear-gradient(180deg, #555, #000);
+}
+.roulette .recent .circle.green {
+  background: linear-gradient(180deg, #66ff66, #009900);
+}
+.roulette .frame2 {
+  width: 100%;
+  max-width: 100%;
+  height: 21rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+.roulette .roulette-animation {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  border-radius: 1rem;
+  background-image: url("../img/border.svg");
+  filter: brightness(0.75);
+}
+.roulette .set {
+  display: inline-flex;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: center;
+}
+.roulette .set .color-block {
+  width: 5.25rem;
+  height: 5.1rem;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.3s ease;
+  filter: brightness(1.35);
+}
+.roulette .set .color-block.red {
+  background-image: url("../img/red.svg");
+}
+.roulette .set .color-block.black {
+  background-image: url("../img/black.svg");
+}
+.roulette .set .color-block.green {
+  background-image: url("../img/green.svg");
+}
+.roulette .input-field {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 0.9375rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.roulette .input-field .bets {
+  display: flex;
+  gap: 0.3125rem;
+}
+.roulette .input-field .bets .bet-amount {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+.roulette .input-field .bets .coins {
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+}
+.roulette .input-field .bets .coins .emoji-coin {
+  background-size: contain;
+  background-image: url("../img/coin.svg");
+}
+.roulette .input-field .bets .coins .amount {
+  font-size: 1.5rem;
+  color: gold;
+}
+.roulette .input-field .buttons {
+  display: grid;
+  gap: 0.5rem;
+  justify-content: center;
+}
+.roulette .input-field .buttons .frame19 .clear {
+  font-size: 1rem;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.3125rem;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+}
+.roulette .input-field .buttons .adds {
+  display: flex;
+  gap: 0.3125rem;
+}
+.roulette .input-field .buttons .adds .button-small {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.3125rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+.roulette .input-field .buttons .adds .button-small .last-text {
+  font-size: 1rem;
+  color: #ffffff;
+}
+.roulette .input-field .place-bets {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+}
+.roulette .input-field .place-bets .bet-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.roulette .input-field .place-bets .bet-button.red {
+  background: linear-gradient(180deg, #ff4d4d, #b30000);
+}
+.roulette .input-field .place-bets .bet-button.green {
+  background: linear-gradient(180deg, #66ff66, #009900);
+}
+.roulette .input-field .place-bets .bet-button.black {
+  background: linear-gradient(180deg, #555, #000);
+}
+.roulette .input-field .place-bets .bet-button .multiplier {
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+.roulette .input-field .bets-info {
+  display: flex;
+  gap: 0.3125rem;
+  align-items: center;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+.roulette .input-field .bets-info .coin {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-size: contain;
+  background-image: url("../img/coin.svg");
+}
+.roulette .input-field .bets-info .bet-amount {
+  color: rgba(255, 255, 255, 0.8);
+}
+.roulette .win-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  border: 2px solid gold;
+  animation: fadeInScale 0.5s forwards;
+}
+.roulette .win-message .win-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.roulette .win-message .win-content .win-text {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ffd700;
+  text-shadow: 2px 2px 4px #000;
+  margin-bottom: 1rem;
+  animation: textGlow 1.5s infinite alternate;
+}
+.roulette .win-message .win-content .win-level {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+.roulette .win-message .win-content .win-stars {
+  font-size: 2.5rem;
+  color: #ffd700;
+  margin-bottom: 1rem;
+}
+.roulette .win-message .win-content .win-amount {
+  font-size: 3rem;
+  color: #32cd32;
+  text-shadow: 2px 2px 4px #000;
+  margin-bottom: 1rem;
+}
+.roulette .win-message .win-content .collect-button {
+  background: linear-gradient(135deg, #ff8c00, #ff4500);
+  border: 2px solid #ffd700;
+  border-radius: 50px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  animation: buttonGlow 1.5s infinite alternate;
+}
+.roulette .win-message .win-content .collect-button:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #ff4500, #ff8c00);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+.roulette .win-message .win-content .collect-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes fadeInScale {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes textGlow {
+  from {
+    text-shadow: 2px 2px 4px #000, 0 0 10px #ffd700, 0 0 20px #ffd700;
+  }
+  to {
+    text-shadow: 2px 2px 4px #000, 0 0 20px #ffd700, 0 0 30px #ffd700;
+  }
+}
+@keyframes buttonGlow {
+  from {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 10px #ffd700, 0 0 20px #ffd700;
+  }
+  to {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 20px #ffd700, 0 0 30px #ffd700;
+  }
+}
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes textGlow {
+  from {
+    text-shadow: 2px 2px 4px #000, 0 0 10px #ffd700, 0 0 20px #ffd700;
+  }
+  to {
+    text-shadow: 2px 2px 4px #000, 0 0 20px #ffd700, 0 0 30px #ffd700;
+  }
+}
+@keyframes buttonGlow {
+  from {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 10px #ffd700, 0 0 20px #ffd700;
+  }
+  to {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 20px #ffd700, 0 0 30px #ffd700;
+  }
+}
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.color-block.highlight {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+.color-block.selected {
+  transform: scale(1.2);
+  filter: brightness(1.5);
+}
+
+.color-block:hover {
+  filter: brightness(1.3);
+}
+
+html {
+  font-size: 16px;
+}
+
+@media screen and (width: 4096px) and (height: 2160px) {
+  html {
+    font-size: 31px;
+  }
+}
+@media screen and (width: 2560px) and (height: 1440px) {
+  html {
+    font-size: 21.32px;
+  }
+}
+@media screen and (width: 3440px) and (height: 1440px) {
+  html {
+    font-size: 21.9px;
+  }
+}
+@media screen and (width: 1920px) and (height: 1200px) {
+  html {
+    font-size: 16px;
+  }
+}
+@media screen and (width: 1920px) and (height: 1200px) {
+  html {
+    font-size: 16px;
+  }
+}
+@media screen and (width: 1920px) and (height: 1440px) {
+  html {
+    font-size: 16px;
+  }
+}
+@media screen and (width: 1600px) and (height: 1024px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media screen and (width: 1440px) and (height: 900px) {
+  html {
+    font-size: 12px;
+  }
+}
+@media screen and (width: 1680px) and (height: 1050px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media screen and (width: 1600px) and (height: 900px) {
+  html {
+    font-size: 13.3px;
+  }
+}
+@media screen and (width: 1600px) and (height: 1024px) {
+  html {
+    font-size: 13.3px;
+  }
+}
+@media screen and (width: 1768px) and (height: 992px) {
+  html {
+    font-size: 15px;
+  }
+}
+@media screen and (width: 1366px) and (height: 768px) {
+  html {
+    font-size: 11.38px;
+  }
+}
+@media screen and (width: 1400px) and (height: 1050px) {
+  html {
+    font-size: 11.7px;
+  }
+}
+@media screen and (width: 1280px) and (height: 1024px) {
+  html {
+    font-size: 11.7px;
+  }
+}
+@media screen and (width: 1280px) and (height: 720px) {
+  html {
+    font-size: 11px;
+  }
+}
+@media screen and (width: 1024px) and (height: 768px) {
+  html {
+    font-size: 10.05px;
+  }
+}
+@media screen and (width: 832px) and (height: 624px) {
+  html {
+    font-size: 8.05px;
+  }
+}
+@media screen and (width: 800px) and (height: 600px) {
+  html {
+    font-size: 8px;
+  }
+}/*# sourceMappingURL=app.css.map */
