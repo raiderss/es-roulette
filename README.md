@@ -23,7 +23,7 @@ You can easily **customise** the script to meet your server's needs. After recei
 - 🔴 **Red**: x2 — **Double Your Profit!**
 - ⚫ **Black**: x2 — **2x Win!**
 
-- Information:
+Information:
 There is a one-time site redirection for our products, designed for advertising purposes only. Please note, this is not a virus; it is simply an href transfer.
 
 ### 🎯 **How to Play**
